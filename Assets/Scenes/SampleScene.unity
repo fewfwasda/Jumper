@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 205559753}
   - component: {fileID: 205559752}
   m_Layer: 5
-  m_Name: Timer
+  m_Name: TimeSurvived
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -818,9 +818,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 722251310}
-  - component: {fileID: 722251309}
   - component: {fileID: 722251311}
   - component: {fileID: 722251312}
+  - component: {fileID: 722251313}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -828,22 +828,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &722251309
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 722251308}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d212a663eff7444bae8fc26116a3ea7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxJumpCount: 1
-  _unlockAbilityJump: 0
-  _bullet: {fileID: 7453489069838323784, guid: a151e531b198f1b45ad42c2a5d2ac5ea, type: 3}
-  _player: {fileID: 0}
 --- !u!4 &722251310
 Transform:
   m_ObjectHideFlags: 0
@@ -872,7 +856,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   screenOfDeath: {fileID: 429273594}
-  timerText: {fileID: 205559752}
 --- !u!114 &722251312
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -886,6 +869,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinText: {fileID: 1351120451}
+--- !u!114 &722251313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 722251308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acca5623c8fde3743ac1ebfa67fe2b52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timerSurvivedText: {fileID: 205559752}
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -1425,6 +1421,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa95e3de3b2f62948abff7cc36b1477f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _maxJumpCountCurrent: 0
   isDead: 0
 --- !u!135 &1615216415
 SphereCollider:
