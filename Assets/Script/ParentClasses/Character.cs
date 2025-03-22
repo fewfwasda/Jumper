@@ -6,10 +6,11 @@ public class Character : MonoBehaviour
     protected int Speed;
 
     //две переменные прыжка для того, чтобы второй прыжок был слабее
-    //protected int JumpForce;
     protected int JumpForce;
     protected int JumpForceCurrent;
     protected int MaxJumpCount;
+    protected int MaxHealth;
+    //protected int СurrentHealth;
 
     protected Rigidbody Rb;
 
@@ -20,6 +21,7 @@ public class Character : MonoBehaviour
 
     protected void Start()
     {
+        MaxHealth = 3;
         MaxJumpCount = 1;
         JumpForce = 6;
         Speed = 10;
@@ -45,7 +47,7 @@ public class Character : MonoBehaviour
             JumpForceCurrent /= 2;
         }
     }
-    
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Ground"))

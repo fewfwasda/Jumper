@@ -269,6 +269,7 @@ GameObject:
   - component: {fileID: 269816679}
   - component: {fileID: 269816678}
   - component: {fileID: 269816677}
+  - component: {fileID: 269816682}
   m_Layer: 0
   m_Name: Ground
   m_TagString: Ground
@@ -392,6 +393,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &269816682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 269816676}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6458cae04e782c04886912e08f78be9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2033710270
 GameObject:
   m_ObjectHideFlags: 0
@@ -405,26 +418,14 @@ GameObject:
   - component: {fileID: 2033710274}
   - component: {fileID: 2033710273}
   - component: {fileID: 2033710272}
-  - component: {fileID: 2033710271}
+  - component: {fileID: 2033710277}
   m_Layer: 0
   m_Name: Sphere
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2033710271
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2033710270}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36fa3549c490eec47b7dcb45765f05a4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!54 &2033710272
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -535,12 +536,25 @@ Transform:
   m_GameObject: {fileID: 2033710270}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: 0, y: 2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2033710277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2033710270}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f52bbc4dc207b346bc7c860bdb16766, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 0
 --- !u!1 &2132008614
 GameObject:
   m_ObjectHideFlags: 0

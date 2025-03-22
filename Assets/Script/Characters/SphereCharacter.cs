@@ -1,12 +1,13 @@
 using UnityEngine;
 
-public class SphereCharacter : Character
+public class SphereCharacter : Character, IService
 {
     protected new void Start()
     {
-         MaxJumpCount = 2;
+        MaxHealth = 5;
+        MaxJumpCount = 2;
         JumpForce = 6;
-        Speed = 10;
+        Speed = 100;
         Rb = GetComponent<Rigidbody>();
     }
 }

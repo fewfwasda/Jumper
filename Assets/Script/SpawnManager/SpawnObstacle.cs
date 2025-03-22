@@ -28,7 +28,6 @@ public class SpawnObstacle : MonoBehaviour
     {
         while (true)
         {
-            Debug.Log(maxTimeToSpawnObstacle);
             int indexObstacle = Random.Range(0, obstaclesPrefabs.Count);
             Instantiate(obstaclesPrefabs[indexObstacle], LeftEdgeOrRight(), Quaternion.identity);
             yield return new WaitForSeconds(Random.Range(_minTimeToSpawnObstacle, maxTimeToSpawnObstacle));
