@@ -7,7 +7,7 @@ public class SpawnObstacle : MonoBehaviour
     public List<GameObject> obstaclesPrefabs = new List<GameObject>();
 
     private int _minTimeToSpawnObstacle;
-    public int maxTimeToSpawnObstacle;
+    private int maxTimeToSpawnObstacle;
 
     private Vector3 _leftEdgeSpawn = new Vector3(-28, 1, 0);
     private Vector3 _rigthEdgeSpawn = new Vector3(28, 1, 0);

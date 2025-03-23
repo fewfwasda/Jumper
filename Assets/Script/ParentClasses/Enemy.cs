@@ -2,19 +2,25 @@ using JetBrains.Annotations;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
-
-public class Enemy : MonoBehaviour, IService
+[RequireComponent(typeof(Rigidbody))]
+public class Enemy : MonoBehaviour
 {
-    protected int Speed = 10;
+    public int Speed;
     public int Damage;
-    private int _edgeMap = 28;
-    private int _centreMap = 0;
+    public int _edgeMap = 28;
+    public int _centreMap = 0;
 
     private Vector3 directionX;
 
-    private void Start()
+    public static Enemy Instance;
+    private void Awake()
+    {
+        Instance = this;
+    }
+    public virtual void Start()
     {
         Damage = 1;
+        Speed = 10;
         //вы€снение в какую сторону держать путь преп€тствию
         if (transform.position.x > _centreMap) directionX = Vector3.left;
         else if (transform.position.x < _centreMap) directionX = Vector3.right;
@@ -32,17 +38,5 @@ public class Enemy : MonoBehaviour, IService
     {
         if (transform.position.x > _edgeMap) Destroy(gameObject);
         else if (transform.position.x < -_edgeMap) Destroy(gameObject);
-    }
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("«дфнук"))
-        {
-            DealDamage(Damage);
-        }
-    }
-    private void DealDamage(int damage)
-    {
-        SphereCharacter. -= damage;
-        Debug.Log(MaxHealth);
     }
 }

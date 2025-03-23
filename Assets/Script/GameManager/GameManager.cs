@@ -1,20 +1,23 @@
+using TMPro;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    //private SphereCharacter _character;
-    //[SerializeField] private GameObject _screenOfDeath;
-    //private void Start()
-    //{
-    //    _character = ServiceLocator.Current.Get<SphereCharacter>();
-    //}
-    //private void Update()
-    //{
-    //    if (_character.currentHealth <= 0) Death();
-    //}
-    //private void Death()
-    //{
-    //    _screenOfDeath.SetActive(true);
-    //    Time.timeScale = 0;
-    //}
+    public GameObject ScreenOfDeath;
+    private void Awake()
+    {
+        GlobalEventManager.CollisionEnemy.AddListener(ChangeHealthSFX);
+        GlobalEventManager.CollisionEnemy.AddListener(StopGame);
+    }
+    private void ChangeHealthSFX()
+    {
+        Debug.Log("SFXDamage");
+    }
+    private void StopGame()
+    {
+        if (Character.Instance.MaxHealth <= 0)
+        {
+            ScreenOfDeath.SetActive(true);
+        }
+    }
 }

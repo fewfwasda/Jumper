@@ -9,8 +9,7 @@ public class Character : MonoBehaviour
     protected int JumpForce;
     protected int JumpForceCurrent;
     protected int MaxJumpCount;
-    protected int MaxHealth;
-    //protected int ÑurrentHealth;
+    public int MaxHealth;
 
     protected Rigidbody Rb;
 
@@ -18,6 +17,12 @@ public class Character : MonoBehaviour
     private int _maxJumpCountCurrent;
 
     private float _horizontalInput;
+
+    public static Character Instance;
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     protected void Start()
     {
@@ -40,14 +45,18 @@ public class Character : MonoBehaviour
     }
     protected virtual void Jump()
     {
-        if (_maxJumpCountCurrent > 0 && Input.GetKeyDown(KeyCode.Space))
+        if (_maxJumpCountCurrent >= 0 && Input.GetKeyDown(KeyCode.Space))
         {
             Rb.AddForce(Vector3.up * JumpForceCurrent, ForceMode.Impulse);
             _maxJumpCountCurrent--;
             JumpForceCurrent /= 2;
         }
     }
-
+    private void EdgesMap()
+    {
+        if (transform.position.x > _edgeMap) transform.position = new Vector3(-_edgeMap, transform.position.y, 0);
+        else if (transform.position.x < -_edgeMap) transform.position = new Vector3(_edgeMap, transform.position.y, 0);
+    }
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
@@ -57,9 +66,12 @@ public class Character : MonoBehaviour
         }
     }
 
-    private void EdgesMap()
+    private void OnTriggerEnter(Collider other)
     {
-        if (transform.position.x > _edgeMap) transform.position = new Vector3(-_edgeMap, transform.position.y, 0);
-        else if (transform.position.x < -_edgeMap) transform.position = new Vector3(_edgeMap, transform.position.y, 0);
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            MaxHealth -= Enemy.Instance.Damage;
+            GlobalEventManager.SendCollisionEnemy();
+        }
     }
 }
