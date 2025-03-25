@@ -2,10 +2,18 @@ using UnityEngine;
 
 public class GroundBlockEnemy : Enemy
 {
-    public override void Start()
+    private int _damage = 1;
+    private int _speed = 10;
+    private void Update()
     {
-        base.Start();
-        Damage = 1;
-        Speed = 10;
+        MoveObstacle(_speed);
+        DestroyOutOfBounds();
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            Attack(_damage);
+        }
     }
 }

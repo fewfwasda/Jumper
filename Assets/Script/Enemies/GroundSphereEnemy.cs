@@ -2,10 +2,18 @@ using UnityEngine;
 
 public class GroundSphereEnemy : Enemy
 {
-    public override void Start()
+    private int _damage = 2;
+    private int _speed = 20;
+    private void Update()
     {
-        base.Start();
-        Damage = 2;
-        Speed = 20;
+        MoveObstacle(_speed);
+        DestroyOutOfBounds();
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            Attack(_damage);
+        }
     }
 }

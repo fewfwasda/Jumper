@@ -5,10 +5,8 @@ using UnityEngine.UIElements;
 [RequireComponent(typeof(Rigidbody))]
 public class Enemy : MonoBehaviour
 {
-    public int Speed;
-    public int Damage;
-    public int _edgeMap = 28;
-    public int _centreMap = 0;
+    private int _edgeMap = 28;
+    private int _centreMap = 0;
 
     private Vector3 directionX;
 
@@ -17,26 +15,31 @@ public class Enemy : MonoBehaviour
     {
         Instance = this;
     }
-    public virtual void Start()
+    private void Start()
     {
-        Damage = 1;
-        Speed = 10;
         //выяснение в какую сторону держать путь препятствию
         if (transform.position.x > _centreMap) directionX = Vector3.left;
         else if (transform.position.x < _centreMap) directionX = Vector3.right;
     }
-    private void Update()
+    public void MoveObstacle(int speed)
     {
-        MoveObstacle();
-        DestroyOutOfBounds();
+        transform.Translate(directionX * Time.deltaTime * speed);
     }
-    private void MoveObstacle()
-    {
-        transform.Translate(directionX * Time.deltaTime * Speed);
-    }
-    private void DestroyOutOfBounds()
+    public void DestroyOutOfBounds()
     {
         if (transform.position.x > _edgeMap) Destroy(gameObject);
         else if (transform.position.x < -_edgeMap) Destroy(gameObject);
+    }
+    public void Attack(int damage)
+    {
+        if (CharacterHealth.Instance.MaxHealth - damage <= 0)
+        {
+            GlobalEventManager.SendDeathPlayer();
+        }
+        else
+        {
+            CharacterHealth.Instance.MaxHealth -= damage;
+            GlobalEventManager.SendCollisionEnemy();
+        }
     }
 }

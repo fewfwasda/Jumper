@@ -3,30 +3,27 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class Character : MonoBehaviour
 {
-    protected int Speed;
+    public int Speed;
 
     //две переменные прыжка для того, чтобы второй прыжок был слабее
     protected int JumpForce;
     protected int JumpForceCurrent;
-    protected int MaxJumpCount;
-    public int MaxHealth;
+
+    public int MaxJumpCount;
+    public int MaxJumpCountCurrent;
 
     protected Rigidbody Rb;
 
     private int _edgeMap = 28;
-    private int _maxJumpCountCurrent;
 
     private float _horizontalInput;
-
     public static Character Instance;
     private void Awake()
     {
         Instance = this;
     }
-
     protected void Start()
     {
-        MaxHealth = 3;
         MaxJumpCount = 1;
         JumpForce = 6;
         Speed = 10;
@@ -45,10 +42,10 @@ public class Character : MonoBehaviour
     }
     protected virtual void Jump()
     {
-        if (_maxJumpCountCurrent >= 0 && Input.GetKeyDown(KeyCode.Space))
+        if (MaxJumpCountCurrent >= 1 && Input.GetKeyDown(KeyCode.Space))
         {
             Rb.AddForce(Vector3.up * JumpForceCurrent, ForceMode.Impulse);
-            _maxJumpCountCurrent--;
+            MaxJumpCountCurrent--;
             JumpForceCurrent /= 2;
         }
     }
@@ -61,17 +58,8 @@ public class Character : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
-            _maxJumpCountCurrent = MaxJumpCount;
+            MaxJumpCountCurrent = MaxJumpCount;
             JumpForceCurrent = JumpForce;
-        }
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("Enemy"))
-        {
-            MaxHealth -= Enemy.Instance.Damage;
-            GlobalEventManager.SendCollisionEnemy();
         }
     }
 }
